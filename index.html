@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="./index.css">
   <title>Document</title>
   <script>
+    const colorHandler = ( tileNumber ) => {
+      selectedTile = document.getElementById(tileNumber);
+      selectedTile.style.backgroundColor = "green";
+    }
 
   </script>
 </head>
@@ -15,7 +19,7 @@
   <main>
     <table>
       <tr>
-        <td></td>
+        <td id="1" onclick="colorHandler('1')"></td>
         <td></td>
         <td></td>
         <td></td>
