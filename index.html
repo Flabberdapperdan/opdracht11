@@ -7,86 +7,38 @@
   <link rel="stylesheet" href="./index.css">
   <title>Document</title>
   <script>
+    const fieldPopulator = () => {
+      console.log(1);
+      var playingField = document.getElementById("playingField");
+      console.log(playingField)
+      var newField = "";
+
+      for (let i = 0; i < 7; i++) {
+        var newRow = "";
+        for (let j = 0; j < 6; j++) {
+          var numberString = i.toString() + j.toString();
+          var id = parseInt(numberString); // dit creeert een unieke id voor elke tegel
+          newTile = `<td class='column${j}' id='${id}' onclick='colorHandler(${id})'></td>`;
+          newRow += newTile;
+        }
+        newRow = `<tr class='row${i}'>${newRow}</tr>`
+        newField += newRow;
+      }
+      playingField.innerHTML = newField;
+    }
+    window.onload = fieldPopulator;
+
     const colorHandler = ( tileNumber ) => {
       selectedTile = document.getElementById(tileNumber);
       selectedTile.style.backgroundColor = "green";
     }
-
   </script>
 </head>
 
 <body>
   <main>
-    <table>
-      <tr>
-        <td id="1" onclick="colorHandler('1')"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+    <table id="playingField" onload="fieldPopulator()">
+      <script></script>
     </table>
   </main>
 </body>
