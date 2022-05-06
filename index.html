@@ -8,17 +8,16 @@
   <title>Document</title>
   <script>
     const fieldPopulator = () => {
-      console.log(1);
       var playingField = document.getElementById("playingField");
-      console.log(playingField)
       var newField = "";
 
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 6; i++) {
         var newRow = "";
-        for (let j = 0; j < 6; j++) {
+        for (let j = 0; j < 7; j++) {
           var numberString = i.toString() + j.toString();
-          var id = parseInt(numberString); // dit creeert een unieke id voor elke tegel
-          newTile = `<td class='column${j}' id='${id}' onclick='colorHandler(${id})'></td>`;
+          var tileId = parseInt(numberString); // dit creeert een unieke id voor elke tegel
+          var tileClass = "column" + j;
+          newTile = `<td class='${tileClass.toString()}' id='${tileId.toString()}' onclick='colorHandler("${tileId.toString()}", "${tileClass.toString()}")'></td>`; //is de toString hier overbodig?
           newRow += newTile;
         }
         newRow = `<tr class='row${i}'>${newRow}</tr>`
@@ -28,10 +27,21 @@
     }
     window.onload = fieldPopulator;
 
-    const colorHandler = ( tileNumber ) => {
-      selectedTile = document.getElementById(tileNumber);
-      selectedTile.style.backgroundColor = "green";
+    const colorHandler = ( tileId, tileClass ) => {
+      var selectedClassCollection = document.getElementsByClassName(tileClass);
+      var selectedClassArray = [];
+      for (let x = 0; x < selectedClassCollection.length; x++) {
+        selectedClassArray.unshift(selectedClassCollection[x]);
+      }
+      for (let n = 0; n < selectedClassArray.length; n++) {
+        var tileToChange = document.getElementById(selectedClassArray[n].id);
+        if (tileToChange.style.backgroundColor !== "green") {
+          tileToChange.style.backgroundColor = "green";
+          return
+        }
+      }   
     }
+    
   </script>
 </head>
 
