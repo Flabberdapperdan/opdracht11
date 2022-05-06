@@ -10,7 +10,6 @@
     const fieldPopulator = () => {
       var playingField = document.getElementById("playingField");
       var newField = "";
-
       for (let i = 0; i < 6; i++) {
         var newRow = "";
         for (let j = 0; j < 7; j++) {
@@ -27,21 +26,27 @@
     }
     window.onload = fieldPopulator;
 
+    var playerNumber = 1;
     const colorHandler = ( tileId, tileClass ) => {
       var selectedClassCollection = document.getElementsByClassName(tileClass);
       var selectedClassArray = [];
       for (let x = 0; x < selectedClassCollection.length; x++) {
         selectedClassArray.unshift(selectedClassCollection[x]);
       }
-      for (let n = 0; n < selectedClassArray.length; n++) {
+      for( let n = 0; n < selectedClassArray.length; n++ ){
         var tileToChange = document.getElementById(selectedClassArray[n].id);
-        if (tileToChange.style.backgroundColor !== "green") {
-          tileToChange.style.backgroundColor = "green";
-          return
+        if( tileToChange.style.backgroundColor !== "green" && tileToChange.style.backgroundColor !== "red" ){
+          if( playerNumber%2 === 0 ){
+            tileToChange.style.backgroundColor = "green";
+          } else if ( playerNumber%2 === 1 ) {
+            tileToChange.style.backgroundColor = "red";
+          }
+          playerNumber++;
+          return;
         }
       }   
     }
-    
+
   </script>
 </head>
 
