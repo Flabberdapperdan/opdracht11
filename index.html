@@ -31,7 +31,6 @@
     const colorHandler = ( tileId, tileClass ) => {
       var selectedClassCollection = document.getElementsByClassName(tileClass);
       var selectedClassArray = [];
-      var columnFull = false
       for( let x = 0; x < selectedClassCollection.length; x++ ){
         selectedClassArray.unshift(selectedClassCollection[x]);
       }
@@ -40,43 +39,16 @@
         if( tileToChange.style.backgroundColor !== "green" && tileToChange.style.backgroundColor !== "orange" ){
           if( playerNumber%2 === 0 ){
             tileToChange.style.backgroundColor = "green";
-            columnFull = false;
           } else if ( playerNumber%2 === 1 ) {
             tileToChange.style.backgroundColor = "orange";
-            columnFull = false;
           }
           playerNumber++;
           return;
-        } else {
-          columnFull = true;
         }
-      }
-      if( columnFull ){
-        for (let j = 0; j < selectedClassCollection.length; j++) {
-          console.log(4);
-          document.getElementById(selectedClassCollection[j].id).style.borderColor = "orange";
-        }
-      }
-    }
-
-    var tileAvailableChecker = ( tileClass ) => {
-      console.log(1)
-      var tileFull = false;
-      var selectedClassCollection = document.getElementsByClassName(tileClass);
-
-      for( let i = 0; i < selectedClassCollection.length; i++ ){
-        if( document.getElementById(selectedClassCollection[i].id).style.backgroundColor !== "" ){
-          console.log(2)
-          tileFull = true;
-        } else {
-          console.log(3)
-          tileFull = false;
-        }
-      }
-      if( tileFull ){
-        for (let j = 0; j < selectedClassCollection.length; j++) {
-          console.log(4);
-          document.getElementById(selectedClassCollection[j].id).style.border = "orange";
+        if( tileToChange.id >= 10 && tileToChange.id < 20 ){
+          for (let j = 0; j < selectedClassCollection.length; j++) {
+          document.getElementById(selectedClassCollection[j].id).style.borderColor = "red";
+          }
         }
       }
     }
